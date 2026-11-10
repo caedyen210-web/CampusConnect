@@ -2,19 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - CampusConnect</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>CampusConnect Weather</title>
 </head>
+
 <body>
-    <header>
-        <h1>Student Dashboard</h1>
-    </header>
-    <main>
-        <p>Welcome back! Here’s what’s happening:</p>
-        <ul>
-            <li>More features coming soon...</li>
-            <li><a href="/events">View Events</a></li>
-        </ul>
-    </main>
+
+    <h1>CampusConnect Weather</h1>
+
+    <table border="1">
+
+        <tr>
+            <th>City</th>
+            <th>Temperature (°F)</th>
+            <th>Weather Description</th>
+            <th>Humidity (%)</th>
+            <th>Wind Speed (mph)</th>
+        </tr>
+
+        {% for weather in api_data %}
+        <tr>
+            <td>{{ weather.city }}</td>
+            <td>{{ weather.temperature }}</td>
+            <td>{{ weather.weather_description }}</td>
+            <td>{{ weather.humidity }}</td>
+            <td>{{ weather.wind_speed }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
 </body>
 </html>
