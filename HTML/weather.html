@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CampusConnect | Weather</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">
+                CampusConnect
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+
+        <h1 class="text-center">Campus Weather</h1>
+
+        <p class="text-center">
+            Current weather conditions for Newberry, South Carolina.
+        </p>
+
+        <!-- Weather information from API -->
+        <div class="card feature-card weather-card">
+
+            <div class="card-body text-center">
+
+                <h3>Current Weather</h3>
+
+                <h1 id="temperature">Loading...</h1>
+
+                <p id="description">
+                    Retrieving weather information...
+                </p>
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-4">
+                        <h5>Feels Like</h5>
+                        <p id="feelsLike">--</p>
+                    </div>
+
+                    <div class="col-4">
+                        <h5>Humidity</h5>
+                        <p id="humidity">--</p>
+                    </div>
+
+                    <div class="col-4">
+                        <h5>Wind</h5>
+                        <p id="windSpeed">--</p>
+                    </div>
+
+                </div>
+
+                <p id="weatherError" class="text-danger"></p>
+
+            </div>
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="text-center mt-4">
+
+            <a href="/"
+               class="btn btn-secondary">
+                Back to Home
+            </a>
+
+            <a href="/events"
+               class="btn btn-primary">
+                Back to Events
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

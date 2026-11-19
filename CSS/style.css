@@ -1,0 +1,75 @@
+/* General page appearance */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #df0404;
+    color: #333;
+    margin: 0;
+     line-height: 1.6;
+}
+
+/* Main headings */
+h1, h2, h3 {
+    color: #df0404;
+    
+    font-weight: bold;
+}
+
+/* Navigation styling */
+.navbar {
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Main content spacing */
+main {
+    padding-bottom: 50px;
+}
+
+/* Feature cards */
+.feature-card {
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+}
+
+/* Hover animation */
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Weather display */
+.weather-card {
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+#temperature {
+    font-size: 55px;
+    margin: 20px;
+}
+
+/* Search box */
+#eventSearch {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+}
+
+/* Footer and small text */
+footer {
+    text-align: center;
+    padding: 20px;
+}

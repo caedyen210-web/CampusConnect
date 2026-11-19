@@ -1,49 +1,74 @@
-import sqlite3
-import os
 
-from flask import Blueprint, render_template
-try:
-    from ..utils.api import WeatherAPI # type: ignore
-except ImportError:
-    from utils.api import WeatherAPI # type: ignore
+import requests
 
-# Create the API blueprint
+from flask import (
+    Blueprint,
+    jsonify,
+    render_template,
+    session,
+    redirect,
+    url_for
+)
+
 api_routes = Blueprint("api_routes", __name__)
 
-# Get your API key from an environment variable
-API_KEY = os.environ.get("WEATHER_API_KEY")
-
-
+# Weather page.
 @api_routes.route("/api")
 def api():
 
-    # Connect to the database
-    connection = sqlite3.connect("db/campusconnect.db")
-    connection.row_factory = sqlite3.Row
+    if not session.get("logged_in"):
+        return redirect(url_for("auth.login"))
 
-    # Create the WeatherAPI object
-    weather_api = WeatherAPI(API_KEY) if API_KEY else None
+    return render_template("api.html")
 
-    if weather_api:
-        try:
-            # Get weather information for Adrian, Michigan
-            weather_data = weather_api.get_weather("Adrian")
 
-            # Clean the returned information
-            cleaned_data = weather_api.parse_weather_data(weather_data)
+# Weather API endpoint.
+@api_routes.route("/api/weather-data")
+def weather_data():
 
-            # Save weather information in the database
-            weather_api.save_api_data(cleaned_data)
+    if not session.get("logged_in"):
+        return jsonify({"error": "Please log in first."}), 401
 
-        except Exception as error:
-            print("Weather API error:", error)
+    # Adrian, Michigan coordinates.
+    latitude = 41.8975
+    longitude = -84.0372
 
-    # Retrieve weather information from SQLite
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM api_data")
-    api_data = cursor.fetchall()
+    weather_url = "https://api.open-meteo.com/v1/forecast"
 
-    connection.close()
+    parameters = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "current": (
+            "temperature_2m,"
+            "relative_humidity_2m,"
+            "apparent_temperature,"
+            "is_day,"
+            "precipitation,"
+            "weather_code,"
+            "wind_speed_10m"
+        ),
+        "temperature_unit": "fahrenheit",
+        "wind_speed_unit": "mph",
+        "timezone": "America/Detroit"
+    }
 
-    # Display weather information
-    return render_template("api.html", api_data=api_data)
+    try:
+        response = requests.get(
+            weather_url,
+            params=parameters,
+            timeout=10
+        )
+
+        response.raise_for_status()
+
+        data = response.json()
+
+        return jsonify(data)
+
+    except requests.RequestException as error:
+
+        print("Weather API error:", error)
+
+        return jsonify({
+            "error": "Unable to retrieve weather information."
+        }), 500

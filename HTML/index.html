@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CampusConnect | Home</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">CampusConnect</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+
+        </div>
+    </nav>
+
+    
+    <main class="container mt-5">
+
+        <!-- Welcome section -->
+        <div class="text-center mb-5">
+
+            <h1>Welcome to CampusConnect!</h1>
+
+            <p class="lead">
+                Stay connected with campus events and local weather.
+            </p>
+
+
+            </p>
+
+        </div>
+
+        <!-- Main navigation cards -->
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="card feature-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h3>Campus Events</h3>
+
+                        <p>
+                            Come and join us for a great time,
+                            meet new people, and enjoy yourself! 
+                        </p>
+
+                        <a href="{{ url_for('event_routes.events') }}"
+                           class="btn btn-primary">
+                            Check Out Events!
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card feature-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h3>Campus Weather</h3>
+
+                        <p>
+                            Keep up with the latest weather conditions
+                            in Newberry, South Carolina.
+                        </p>
+
+                        <a href="{{ url_for('api_routes.api') }}"
+                           class="btn btn-primary">
+                            View Weather
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

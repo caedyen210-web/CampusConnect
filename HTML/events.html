@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CampusConnect | Events</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">
+                CampusConnect
+            </a>
+
+            <a class="btn btn-outline-light"
+               href="{{ url_for('auth.logout') }}">
+                Logout
+            </a>
+
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+
+        <h1 class="text-center">Campus Events</h1>
+
+        <p class="text-center">
+            Discover activities happening around campus!
+        </p>
+
+        <!-- Event search -->
+        <input
+            type="text"
+            id="eventSearch"
+            class="form-control mb-4"
+            placeholder="Search campus events..."
+        >
+
+        <!-- Display database events -->
+        <div class="row g-4" id="eventList">
+
+            {% for event in events %}
+
+            <div class="col-md-4 event-item">
+
+                <div class="card feature-card h-100">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            {{ event.event_name }}
+                        </h5>
+
+                        <p>
+                            <strong>Date:</strong>
+                            {{ event.event_date }}
+                        </p>
+
+                        <p>
+                            <strong>Time:</strong>
+                            {{ event.event_time }}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            {{ event.event_location }}
+                        </p>
+
+                        <p>{{ event.description }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No campus events are currently available.
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="text-center mt-5">
+
+            <a href="/"
+               class="btn btn-secondary">
+                Back to Home
+            </a>
+
+            <a href="/api"
+               class="btn btn-primary">
+                Check Weather
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
