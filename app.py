@@ -1,21 +1,27 @@
-from flask import Flask, render_template
-from routes.auth_routes import auth_bp
-from routes.api_routes import api_bp
-from routes.event_routes import event_bp
+import flask
 
-app = Flask(__name__)
-app.template_folder = "templates"
-app.static_folder = "static"
+app = flask.Flask(__name__)
 
-# Define what they user should see when they visit the root URL
+# Login page
+@app.route("/login")
+def login():
+    return flask.render_template("login.html")
+
+# Homepage
 @app.route("/")
-def index():
-    return render_template("index.html")
+def home():
+    return flask.render_template("index.html")
 
-# Register blueprints
-app.register_blueprint(auth_bp)
-app.register_blueprint(api_bp)
-app.register_blueprint(event_bp)
+# Events page
+@app.route("/events")
+def events():
+    return flask.render_template("events.html")
+
+# Weather page
+@app.route("/weather")
+def weather():
+    return flask.render_template("api.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
