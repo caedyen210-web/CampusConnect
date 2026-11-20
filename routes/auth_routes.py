@@ -11,11 +11,12 @@ from flask import (
 
 auth_bp = Blueprint("auth", __name__)
 
-# Temporary demonstration login credentials.
+# Temporary demonstration login.
 DEMO_EMAIL = "student@campus.edu"
 DEMO_PASSWORD = "campus123"
 
 
+# Login page.
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -24,7 +25,7 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        # Check the demonstration credentials.
+        # Check the login information.
         if email == DEMO_EMAIL and password == DEMO_PASSWORD:
 
             session["logged_in"] = True
@@ -37,7 +38,7 @@ def login():
     return render_template("login.html")
 
 
-# Log the student out.
+# Logout page.
 @auth_bp.route("/logout")
 def logout():
 

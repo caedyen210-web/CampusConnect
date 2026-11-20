@@ -1,47 +1,48 @@
 
+from flask import Blueprint, render_template
 import sqlite3
 import os
 
-from flask import (
-    Blueprint,
-    render_template,
-    session,
-    redirect,
-    url_for,
-    current_app
-)
+
 
 event_routes = Blueprint("event_routes", __name__)
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATABASE = os.path.join(BASE_DIR, "db", "campusconnect.db")
 
 
 @event_routes.route("/events")
 def events():
+    events_list = []
 
-    # Require the student to log in first.
-    if not session.get("logged_in"):
-        return redirect(url_for("auth.login"))
+    try:
+        connection = sqlite3.connect(DATABASE)
+        connection.row_factory = sqlite3.Row
 
-    # Connect to the existing CampusConnect database.
-    database = os.path.join(
-        current_app.root_path,
-        "db",
-        "campusconnect.db"
-    )
+        table_exists = connection.execute("""
+            SELECT name FROM sqlite_master
+            WHERE type='table' AND name='external_events'
+        """).fetchone()
 
-    connection = sqlite3.connect(database)
-    connection.row_factory = sqlite3.Row
+        if table_exists:
+            rows = connection.execute(
+                "SELECT * FROM external_events"
+            ).fetchall()
 
-    cursor = connection.cursor()
+            for row in rows:
+                data = dict(row)
 
-    # Retrieve saved campus events.
-    cursor.execute("SELECT * FROM external_events")
+                events_list.append({
+                    "name": data.get("event_name") or data.get("name") or data.get("title", "Untitled Event"),
+                    "date": data.get("event_date") or data.get("date") or data.get("start_date", ""),
+                    "time": data.get("time", ""),
+                    "location": data.get("location", ""),
+                    "description": data.get("description", "")
+                })
 
-    events = cursor.fetchall()
+        connection.close()
 
-    connection.close()
+    except sqlite3.Error as error:
+        print("Database error:", error)
 
-
-    return render_template(
-        "events.html",
-        events=events
-    )
+    return render_template("events.html", events=events_list)

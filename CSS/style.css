@@ -1,75 +1,76 @@
-/* General page appearance */
+/* CampusConnect Crimson Theme */
+
+:root {
+    --crimson: #990000;
+    --dark-crimson: #700000;
+    --light-crimson: #e60606;
+    --white: #c00202;
+    --dark-text: #292929;
+}
+
+/* Main background */
 body {
+    background-color: var(--light-crimson);
+    color: var(--dark-text);
     font-family: Arial, sans-serif;
-    background-color: #df0404;
-    color: #333;
-    margin: 0;
-     line-height: 1.6;
+}
+
+/* Navigation and headers */
+header,
+.navbar,
+.bg-primary {
+    background-color: var(--crimson) !important;
 }
 
 /* Main headings */
-h1, h2, h3 {
-    color: #df0404;
-    
-    font-weight: bold;
-}
-
-/* Navigation styling */
-.navbar {
-    padding: 15px;
-}
-
-.navbar-brand {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Main content spacing */
-main {
-    padding-bottom: 50px;
-}
-
-/* Feature cards */
-.feature-card {
-    border: none;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
-    margin-bottom: 20px;
-}
-
-/* Hover animation */
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
-
-/* Weather display */
-.weather-card {
-    max-width: 700px;
-    margin: 30px auto;
-}
-
-#temperature {
-    font-size: 55px;
-    margin: 20px;
-}
-
-/* Search box */
-#eventSearch {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+h1, h2, h3, h4, h5 {
+    color: var(--crimson);
 }
 
 /* Buttons */
-.btn {
-    border-radius: 6px;
+.btn-primary {
+    background-color: var(--crimson) !important;
+    border-color: var(--crimson) !important;
+    color: var(--white) !important;
 }
 
-/* Footer and small text */
-footer {
-    text-align: center;
-    padding: 20px;
+.btn-primary:hover {
+    background-color: var(--dark-crimson) !important;
+    border-color: var(--dark-crimson) !important;
+}
+
+/* Outlined buttons */
+.btn-outline-primary {
+    color: var(--crimson) !important;
+    border-color: var(--crimson) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--crimson) !important;
+    color: var(--white) !important;
+}
+
+/* Navigation links */
+.nav-link:hover,
+.nav-link.active {
+    color: var(--white) !important;
+}
+
+
+/* Cards */
+.card {
+background-color: var(--white);
+border: none;
+border-radius: 12px;
+box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+/* Links */
+a {
+    color: var(--crimson);
+}
+
+a:hover {
+    color: var(--dark-crimson);
 }

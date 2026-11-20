@@ -1,12 +1,10 @@
 
-// Wait until the HTML document has loaded.
+
 document.addEventListener("DOMContentLoaded", function () {
 
     console.log("CampusConnect JavaScript loaded!");
 
-    // ============================================
-    // 1. EVENT SEARCH
-    // ============================================
+
 
     const searchInput = document.getElementById("eventSearch");
 
@@ -47,9 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ============================================
-    // 2. WEATHER API
-    // ============================================
+
 
     const temperature = document.getElementById("temperature");
 
