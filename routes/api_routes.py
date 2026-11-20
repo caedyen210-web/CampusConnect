@@ -1,6 +1,9 @@
 
 from flask import Blueprint, render_template, jsonify
-import requests
+import json
+import urllib.error
+import urllib.parse
+import urllib.request
 
 
 
@@ -26,10 +29,18 @@ def weather_data():
     }
 
     try:
-        response = requests.get(url, params=params, timeout=10)
-        response.raise_for_status()
+        query = urllib.parse.urlencode(params)
+        request = urllib.request.Request(
+            f"{url}?{query}",
+            headers={"User-Agent": "CampusConnect"}
+        )
 
-        return jsonify(response.json()["current"])
+        with urllib.request.urlopen(request, timeout=10) as response:
+            weather_data = json.loads(response.read().decode("utf-8"))
 
-    except requests.RequestException as error:
+        return jsonify(weather_data["current"])
+
+    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError) as error:
         return jsonify({"error": str(error)}), 500
+
+    
