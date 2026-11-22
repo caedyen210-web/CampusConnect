@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Weather</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- Weather content -->
+    <main class="container py-5">
+
+        <div class="text-center mb-5">
+
+            <h1>Campus Weather</h1>
+
+            <p class="lead">
+                Stay updated on current campus weather conditions.
+            </p>
+
+            <p>Newberry, South Carolina</p>
+
+            <!-- Weather information -->
+            <div id="weather-info" class="weather-card mx-auto p-4">
+
+                <h2>Current Weather</h2>
+
+                <h1 id="temperature">--°F</h1>
+
+                <h3 id="conditions">
+                    Weather information will appear here.
+                </h3>
+
+                <p id="wind">Wind: -- mph</p>
+
+            </div>
+
+            <!-- Weather button -->
+            <button id="weather-button" class="btn btn-primary mt-3">
+                Check Weather
+            </button>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <div class="text-center mt-5">
+
+            <a
+                href="file:///C:/Users/Caedyen/CampusConnect/templates/index.html"
+                class="btn btn-primary"
+            >
+                Back to Home
+            </a>
+
+            <a
+                href="file:///C:/Users/Caedyen/CampusConnect/templates/events.html"
+                class="btn btn-primary"
+            >
+                View Events
+            </a>
+
+        </div>
+
+    </main>
+
+    
+
+    <style>
+
+    body {
+            background-color: #00d8fe;
+        }
+
+        text {
+            color: #ffffff;
+        }
+
+        </style>
+
+
+    <footer class="text-center py-4">
+        <p>CampusConnect &copy; 2026</p>
+    </footer>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

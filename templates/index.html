@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Home</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                CampusConnect
+      
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container py-5">
+
+        <div class="text-center mb-5">
+
+            <h1 class="text-white">Welcome to CampusConnect!</h1>
+
+            <p class="lead text-white">
+                Your place to stay connected with campus
+                activities, events, and information.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Events card -->
+            <div class="col-md-6">
+
+                <div class="card h-100">
+                    <div class="card-body text-center">
+
+                    <h2 class="card-title">
+                    Campus Events
+                    </h2>
+
+                    <p class="card-text">
+                        Discover upcoming events aroun campus!
+                    </p>
+
+                    <a
+                        href="file:///C:/Users/Caedyen/CampusConnect/templates/events.html"
+                        class="btn btn-primary"
+                    >
+                    View Events
+                    </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Weather card -->
+            <div class="col-md-6">
+
+                <div class="card h-100">
+                    <div class="card-body text-center">
+
+                        <h2 class="card-title">
+                            Campus Weather
+                        </h2>
+
+                        <p class="card-text">
+                            Check the current weather before
+                            heading out to your next campus activity.
+                        </p>
+
+                        <a
+                            href="file:///C:/Users/Caedyen/CampusConnect/templates/api.html"
+                            class="btn btn-primary"
+                        >
+                            Check Weather
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+<style>
+    body {
+        background-color: #950a0a;
+        color: white;
+    }
+
+    .card-title {
+        color: rgb(3, 3, 3);
+    }
+
+    .card-text {
+        color: rgb(13, 11, 11);
+    }
+</style>
+
+    <footer class="text-center py-4">
+        <p>CampusConnect &copy; 2026</p>
+    </footer>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

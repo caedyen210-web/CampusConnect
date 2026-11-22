@@ -1,22 +1,63 @@
-## Setting Up the Project
 
-1. Install the necessary packages with the command
+# CampusConnect
+
+CampusConnect is a campus information application
+that connects students with campus events and weather.
+
+## Features
+
+- Home page
+- Campus Events
+- Current Weather
+- Weather refreshing
+- Crimson-red design
+- Navigation between pages
+- Public access without login
+
+## Requirements
+
+Install Python and the required packages.
+
 ```bash
 pip install flask requests beautifulsoup4 selenium
 ```
 
-2. Setup your database using the pre-written schema with the command
+## Database Setup
+
+Create the database:
+
 ```bash
 sqlite3 db/campusconnect.db < db/schema.sql
 ```
 
-3. Seed your database with starter data with the command
+Add starter data:
+
 ```bash
 python db/seed_data.py
 ```
 
-4. Start the program with the command
+## Run the Application
+
+Start CampusConnect:
 
 ```bash
 python app.py
 ```
+
+Open your browser:
+
+http://127.0.0.1:5000/
+
+## Navigation
+
+Home:
+/
+
+Events:
+/events
+
+Weather:
+/api
+
+Weather API:
+/api/weather-data

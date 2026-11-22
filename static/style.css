@@ -1,0 +1,37 @@
+text {
+    color: #fef6f6;
+}
+
+body {
+    background-color: #950a0a;
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+strong {
+    color: white;
+}
+
+body {
+    background-color: #00d8fe;
+}
+
+.weather-card {
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card h1 {
+    color: #007bff;
+    font-weight: bold;
+}
